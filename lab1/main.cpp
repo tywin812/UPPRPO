@@ -17,6 +17,22 @@ TEST(CandleTest, BodyContains_RedCandle_InsideBody) {
     EXPECT_TRUE(candle.body_contains(103));
 }
 
+// 2.2 Тесты для contains
+TEST(CandleTest, Contains_InsideFullRange) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_TRUE(candle.contains(96));
+}
+
+TEST(CandleTest, Contains_AtLowerBound) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_TRUE(candle.contains(95)); // low
+}
+
+TEST(CandleTest, Contains_OutsideRange) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_FALSE(candle.contains(111));
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
