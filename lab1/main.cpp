@@ -65,6 +65,22 @@ TEST(CandleTest, BodySize_Flat) {
   EXPECT_DOUBLE_EQ(candle.body_size(), 0.0);
 }
 
+// 2.5 Тесты для is_red
+TEST(CandleTest, IsRed_True) {
+  Candle candle(105, 110, 95, 100);
+  EXPECT_TRUE(candle.is_red());
+}
+
+TEST(CandleTest, IsRed_False) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_FALSE(candle.is_red());
+}
+
+TEST(CandleTest, IsRed_Flat) {
+  Candle candle(100, 110, 95, 100);
+  EXPECT_FALSE(candle.is_red());
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
