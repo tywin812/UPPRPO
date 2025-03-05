@@ -1,3 +1,4 @@
 /mnt/c/Study/upprpo/lab1/build/CMakeFiles/testproj.dir
+/mnt/c/Study/upprpo/lab1/build/CMakeFiles/test.dir
 /mnt/c/Study/upprpo/lab1/build/CMakeFiles/edit_cache.dir
 /mnt/c/Study/upprpo/lab1/build/CMakeFiles/rebuild_cache.dir

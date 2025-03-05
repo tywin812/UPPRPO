@@ -1,72 +1,23 @@
-﻿#include <vector>
-#include <functional>
-#include <iostream>
-
+﻿#include <gtest/gtest.h>
 #include "./candle.h"
 
-//массив всех тестов, который мы заполняем в функции initTests
-static std::vector<std::function<bool()>> tests;
-
-//тест 1
-bool test1()
-{
-  //пример какого-то теста
-  return 42 == (41 + 1); //passed
+// 2.1 Тесты для body_contains
+TEST(CandleTest, BodyContains_GreenCandle_InsideBody) {
+    Candle candle(100, 110, 95, 105); // green: open < close
+    EXPECT_TRUE(candle.body_contains(103));
 }
 
-//тест 2
-bool test2()
-{
-  //пример какого-то теста
-  return 42 != (41 + 1); //failed
+TEST(CandleTest, BodyContains_GreenCandle_OutsideBody) {
+    Candle candle(100, 110, 95, 105); 
+    EXPECT_FALSE(candle.body_contains(97));  // ниже open
 }
 
-//тест 3
-bool test3()
-{
-  Candle candle{ 0.0, 3.0, 3.0, 3.0 };
-
-  //пример какого-то теста
-  return candle.high == 3.0;
+TEST(CandleTest, BodyContains_RedCandle_InsideBody) {
+    Candle candle(105, 110, 95, 100); // red: open > close
+    EXPECT_TRUE(candle.body_contains(103));
 }
 
-void initTests()
-{
-  tests.push_back(test1);
-  tests.push_back(test2);
-  tests.push_back(test3);
-  //tests.push_back(test4);
-  //tests.push_back(test5);
-}
-
-int launchTests()
-{
-  int total = 0;
-  int passed = 0;
-
-  for (const auto& test : tests)
-  {
-    std::cout << "test #" << (total + 1);
-    if (test())
-    {
-      passed += 1;
-      std::cout << " passed\n";
-    }
-    else
-    {
-      std::cout << " failed\n";
-    }
-    total += 1;
-  }
-
-  std::cout << "\ntests " << passed << "/" << total << " passed!" << std::endl;
-
-  //0 = success
-  return total - passed;
-}
-
-int main()
-{
-  initTests();
-  return launchTests();
+int main(int argc, char** argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

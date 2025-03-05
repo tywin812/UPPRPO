@@ -108,6 +108,8 @@ testproj_EXTERNAL_OBJECTS =
 testproj: CMakeFiles/testproj.dir/main.cpp.o
 testproj: CMakeFiles/testproj.dir/candle.cpp.o
 testproj: CMakeFiles/testproj.dir/build.make
+testproj: /usr/lib/x86_64-linux-gnu/libgtest_main.a
+testproj: /usr/lib/x86_64-linux-gnu/libgtest.a
 testproj: CMakeFiles/testproj.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Study/upprpo/lab1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable testproj"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/testproj.dir/link.txt --verbose=$(VERBOSE)
