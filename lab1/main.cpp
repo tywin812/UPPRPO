@@ -49,6 +49,22 @@ TEST(CandleTest, FullSize_Inverted) {
   EXPECT_DOUBLE_EQ(candle.full_size(), 0.0);
 }
 
+// 2.4 Тесты для body_size
+TEST(CandleTest, BodySize_Green) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_DOUBLE_EQ(candle.body_size(), 5.0);
+}
+
+TEST(CandleTest, BodySize_Red) {
+  Candle candle(105, 110, 95, 100);
+  EXPECT_DOUBLE_EQ(candle.body_size(), 5.0);
+}
+
+TEST(CandleTest, BodySize_Flat) {
+  Candle candle(100, 110, 95, 100);
+  EXPECT_DOUBLE_EQ(candle.body_size(), 0.0);
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
