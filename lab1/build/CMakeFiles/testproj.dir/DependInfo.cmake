@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Study/upprpo/test-repo/main.cpp" "CMakeFiles/testproj.dir/main.cpp.o" "gcc" "CMakeFiles/testproj.dir/main.cpp.o.d"
+  "/mnt/c/Study/upprpo/lab1/candle.cpp" "CMakeFiles/testproj.dir/candle.cpp.o" "gcc" "CMakeFiles/testproj.dir/candle.cpp.o.d"
+  "/mnt/c/Study/upprpo/lab1/main.cpp" "CMakeFiles/testproj.dir/main.cpp.o" "gcc" "CMakeFiles/testproj.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

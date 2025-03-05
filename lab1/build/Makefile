@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Study/upprpo/test-repo
+CMAKE_SOURCE_DIR = /mnt/c/Study/upprpo/lab1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Study/upprpo/test-repo/build
+CMAKE_BINARY_DIR = /mnt/c/Study/upprpo/lab1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Study/upprpo/test-repo/build/CMakeFiles /mnt/c/Study/upprpo/test-repo/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Study/upprpo/lab1/build/CMakeFiles /mnt/c/Study/upprpo/lab1/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Study/upprpo/test-repo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Study/upprpo/lab1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,30 @@ testproj/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testproj.dir/build.make CMakeFiles/testproj.dir/build
 .PHONY : testproj/fast
 
+candle.o: candle.cpp.o
+.PHONY : candle.o
+
+# target to build an object file
+candle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testproj.dir/build.make CMakeFiles/testproj.dir/candle.cpp.o
+.PHONY : candle.cpp.o
+
+candle.i: candle.cpp.i
+.PHONY : candle.i
+
+# target to preprocess a source file
+candle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testproj.dir/build.make CMakeFiles/testproj.dir/candle.cpp.i
+.PHONY : candle.cpp.i
+
+candle.s: candle.cpp.s
+.PHONY : candle.s
+
+# target to generate assembly for a file
+candle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testproj.dir/build.make CMakeFiles/testproj.dir/candle.cpp.s
+.PHONY : candle.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... testproj"
+	@echo "... candle.o"
+	@echo "... candle.i"
+	@echo "... candle.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

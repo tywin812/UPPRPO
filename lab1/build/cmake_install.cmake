@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Study/upprpo/test-repo
+# Install script for directory: /mnt/c/Study/upprpo/lab1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Study/upprpo/test-repo/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Study/upprpo/lab1/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
