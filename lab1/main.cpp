@@ -33,6 +33,22 @@ TEST(CandleTest, Contains_OutsideRange) {
   EXPECT_FALSE(candle.contains(111));
 }
 
+// 2.3 Тесты для full_size
+TEST(CandleTest, FullSize_Normal) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_DOUBLE_EQ(candle.full_size(), 15.0);
+}
+
+TEST(CandleTest, FullSize_SinglePrice) {
+  Candle candle(100, 100, 100, 100);
+  EXPECT_DOUBLE_EQ(candle.full_size(), 0.0);
+}
+
+TEST(CandleTest, FullSize_Inverted) {
+  Candle candle(100, 95, 95, 100);
+  EXPECT_DOUBLE_EQ(candle.full_size(), 0.0);
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
