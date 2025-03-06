@@ -1,3 +1,0 @@
-/mnt/c/Study/upprpo/test-repo/build/CMakeFiles/testproj.dir
-/mnt/c/Study/upprpo/test-repo/build/CMakeFiles/edit_cache.dir
-/mnt/c/Study/upprpo/test-repo/build/CMakeFiles/rebuild_cache.dir
