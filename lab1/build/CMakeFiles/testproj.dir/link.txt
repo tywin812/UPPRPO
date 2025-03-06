@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/testproj.dir/main.cpp.o CMakeFiles/testproj.dir/candle.cpp.o -o testproj  /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a 
+/usr/bin/c++ CMakeFiles/testproj.dir/main.cpp.o CMakeFiles/testproj.dir/candle.cpp.o -o testproj  lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 

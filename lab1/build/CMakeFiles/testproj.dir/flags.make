@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -isystem /mnt/c/Study/upprpo/lab1/build/_deps/googletest-src/googletest/include -isystem /mnt/c/Study/upprpo/lab1/build/_deps/googletest-src/googletest
 
-CXX_FLAGS = -DGTEST_HAS_PTHREAD=1
+CXX_FLAGS = 
 

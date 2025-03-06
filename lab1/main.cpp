@@ -81,6 +81,22 @@ TEST(CandleTest, IsRed_Flat) {
   EXPECT_FALSE(candle.is_red());
 }
 
+// 2.6 Тесты для is_green
+TEST(CandleTest, IsGreen_True) {
+  Candle candle(100, 110, 95, 105);
+  EXPECT_TRUE(candle.is_green());
+}
+
+TEST(CandleTest, IsGreen_False) {
+  Candle candle(105, 110, 95, 100);
+  EXPECT_FALSE(candle.is_green());
+}
+
+TEST(CandleTest, IsGreen_Flat) {
+  Candle candle(100, 110, 95, 100);
+  EXPECT_FALSE(candle.is_green());
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
