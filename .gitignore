@@ -1,0 +1,11 @@
+# Ignore build artifacts
+build/
+**/build/
+*.o
+*.obj
+*.exe
+*.log
+*.cmake
+Makefile
+CMakeCache.txt
+CMakeFiles/
