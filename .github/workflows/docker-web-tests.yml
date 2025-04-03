@@ -20,10 +20,10 @@ jobs:
 
       - name: Build and push app image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest -f Dockerfile.app .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest -f tywin812/UPPRPO/lab2/Dockerfile.app .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest
 
       - name: Build and push web image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest -f Dockerfile.web .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest -f tywin812/UPPRPO/lab2/Dockerfile.web .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest
