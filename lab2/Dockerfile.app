@@ -5,12 +5,14 @@ RUN apt-get update && \
 
 RUN mkdir -p /shared/logs
 
-COPY . /app
 WORKDIR /app
 
-RUN mkdir build && \
-    cd build && \
-    cmake .. && \
+COPY lab2/CMakeLists.txt /app/lab2/CMakeLists.txt
+COPY lab2/ /app/lab2/
+
+RUN mkdir -p /app/build && \
+    cd /app/build && \
+    cmake /app/lab2 && \
     make
 
 CMD ["sh", "-c", "./build/testproj | tee /shared/logs/test-results.log"]
