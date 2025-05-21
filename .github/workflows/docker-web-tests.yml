@@ -3,7 +3,7 @@ name: Docker Build and Push
 on:
   push:
     branches: 
-      - feature-docker-web-hub
+      - feature-k8s-helm
 
 jobs:
   build-and-push:
@@ -20,10 +20,30 @@ jobs:
 
       - name: Build and push app image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest -f lab2/Dockerfile.app .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest -f task3/Dockerfile.app .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-app:latest
 
       - name: Build and push web image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest -f lab2/Dockerfile.web .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest -f task3/Dockerfile.web .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/test-repo-web:latest
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+
+      - name: Package Helm chart
+        run: |
+          helm package helm/test-repo-chart
+
+      - name: Publish Helm chart to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: test-repo-chart-*.tgz
+          tag_name: v0.1.0
+          name: Release v0.1.0
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
