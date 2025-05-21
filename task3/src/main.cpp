@@ -97,7 +97,13 @@ TEST(CandleTest, IsGreen_Flat) {
   EXPECT_FALSE(candle.is_green());
 }
 
+TEST(CandleTest, IsDoji_NearDoji) {
+    Candle c(100.0, 110.0, 90.0, 100.001); 
+    EXPECT_TRUE(c.is_doji()) << "Candle with small body (0.001/20 <= 0.0001) should be a doji";
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+

@@ -34,5 +34,7 @@ public:
 
 	bool is_green() const noexcept;
 	bool is_red() const noexcept;
+	
+	bool is_doji() const noexcept;
 
 };

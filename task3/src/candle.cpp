@@ -51,3 +51,17 @@ bool Candle::is_red() const noexcept
 {
 	return close < open;
 }
+
+bool Candle::is_doji() const noexcept
+{
+	constexpr double threshold = 0.0001; 
+	if (open == close) {
+		return true;
+	}
+	double body = body_size();
+	double range = full_size();
+	if (range == 0.0) {
+		return false;
+	}
+	return body / range <= threshold;
+}
