@@ -1,0 +1,9 @@
+FROM nginx:latest
+
+RUN apt-get update && apt-get install -y curl
+COPY task3/kubectl /usr/local/bin/kubectl
+RUN chmod +x /usr/local/bin/kubectl
+COPY task3/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,7 @@
+app:
+  image: tywin812/test-repo-app:latest
+web:
+  image: tywin812/test-repo-web:latest
+service:
+  type: LoadBalancer
+  port: 80
