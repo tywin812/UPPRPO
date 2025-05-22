@@ -1,0 +1,73 @@
+stages:
+  - build
+  - test
+  - publish
+  - deploy
+  - pages
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: "/certs"
+  KUBE_CONFIG: $CI_PROJECT_DIR/kubeconfig
+
+build:
+  stage: build
+  image: docker:20.10
+  services:
+    - docker:20.10-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - docker build -f task3/Dockerfile.app -t $CI_REGISTRY_IMAGE/test-repo-app:$CI_COMMIT_SHA .
+    - docker build -f task3/Dockerfile.web -t $CI_REGISTRY_IMAGE/test-repo-web:$CI_COMMIT_SHA .
+  only:
+    - feature-k8s-helm
+
+test:
+  stage: test
+  image: $CI_REGISTRY_IMAGE/test-repo-app:$CI_COMMIT_SHA
+  script:
+    - ./build/testproj
+  only:
+    - feature-k8s-helm
+
+publish:
+  stage: publish
+  image: docker:20.10
+  services:
+    - docker:20.10-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE/test-repo-app:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/test-repo-web:$CI_COMMIT_SHA
+  only:
+    - feature-k8s-helm
+
+deploy:
+  stage: deploy
+  image: alpine/helm:3.5.4
+  script:
+    - helm upgrade --install test-release ./helm/test-repo-chart --set app.image=$CI_REGISTRY_IMAGE/test-repo-app:$CI_COMMIT_SHA --set web.image=$CI_REGISTRY_IMAGE/test-repo-web:$CI_COMMIT_SHA
+  only:
+    - feature-k8s-helm
+
+pages:
+  stage: pages
+  image: $CI_REGISTRY_IMAGE/test-repo-web:$CI_COMMIT_SHA
+  script:
+    - apt-get update && apt-get install -y curl
+    - curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -L -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && install kubectl /usr/local/bin/kubectl && rm kubectl
+    - until kubectl get pods -l app=test-release-app -o jsonpath='{.items[0].status.phase}' | grep Running; do sleep 1; done
+    - APP_POD=$(kubectl get pods -l app=test-release-app -o jsonpath='{.items[0].metadata.name}')
+    - until [ -n "$(kubectl logs $APP_POD)" ]; do sleep 1; done
+    - LOGS=$(kubectl logs $APP_POD)
+    - echo "<pre>$LOGS</pre>" > public/index.html
+  artifacts:
+    paths:
+      - public
+  only:
+    - feature-k8s-helm
